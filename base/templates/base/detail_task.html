@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+ <div class="form-group form-group position-absolute top-25 start-50 translate-middle-x">
+  <br>
+
+  <h1>{{task|title}}</h1>
+{{task.description}}
+ </div>
+{% endblock %}

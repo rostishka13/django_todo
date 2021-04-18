@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="form-group position-absolute top-25 start-50 translate-middle-x">
+      <h1> Update Task</h1>
+     <form action="" method="post", enctype="multipart/form-data">
+            {% csrf_token %}
+         <div class="mb-3 " style = "width: 200px" >
+        <input type="text" class="form-control" name="title" placeholder="Task" >
+    </div>
+    <div class="mb-3 ">
+        <textarea class="form-control" name="description" placeholder="Description"></textarea>
+     </div>
+    <div class="mb-3 " >
+      <input type="checkbox"  name="complete">
+        <p>Complete</p>
+
+    </div>
+
+         <br>
+    <button class="btn btn-secondary" style = "width: 200px" >Update</button>
+</form>
+</div>
+{% endblock %}

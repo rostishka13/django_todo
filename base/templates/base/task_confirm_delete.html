@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block content %}
+ <div class="form-group form-group position-absolute top-25 start-50 translate-middle-x">
+     <br>
+    <form action="" method="post">
+        {% csrf_token %}
+
+            <H3>Are you sure to delete this task '{{task}}' ?</H3>
+
+        <input type="submit", value="Delete", class="btn btn-danger">
+    </form>
+ </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="position-absolute top-25 start-50 translate-middle-x">
+    <h1 style="text-align:center">Todo list</h1>
+
+
+    <table class="table" style="text-align: center"  >
+
+        <hr>
+  <thead>
+    <tr>
+        <th scope="col">Complete</th>
+        <th scope="col">item</th>
+        <th scope="col">delete</th>
+        <th scope="col">edit</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for task in tasks%}
+
+        <tr>
+            <td>
+                <div class="mb-3 " >
+                    <input type="checkbox"  name="complete">
+                </div>
+            </td>
+            {% if task.complete%}
+                <td><s><a href="{% url 'detail_task' task.id %}" class="link-secondary" style="text-decoration: None">{{task}}</a> </s></td>
+            {% else %}
+                <td><a href="{% url 'detail_task' task.id %}" class="link-secondary" style="text-decoration: None">{{task}}</a></td>
+            {% endif %}
+            <td><a href="{% url 'delete_task' task.id %}" class="link-secondary btn-close" style="text-decoration: None"></a></td>
+            <td><a href="{% url 'update_task' task.id%}" class="link-secondary" style="text-decoration: None">&#9998;</a></td>
+        </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+    <a href="{% url 'add_task' %}" class="btn btn-success position-absolute top-25 start-50 translate-middle-x"> Add Task </a>
+
+
+
+
+</div>
+{% endblock %}

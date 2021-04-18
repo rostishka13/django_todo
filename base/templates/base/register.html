@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="form-group form-group position-absolute top-25 start-50 translate-middle-x">
+    <h1>Sign up</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+
+
+            <div class="mb-3 " style = "width: 300px" >
+                <input type="text" class="form-control" name="username" placeholder="Username" >
+            </div>
+            <div class="mb-3 " style = "width: 300px" >
+                <input type="text" class="form-control" name="first_name" placeholder="First Name" >
+            </div>
+            <div class="mb-3 " style = "width: 300px" >
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name" >
+            </div>
+            <div class="mb-3 " style = "width: 300px" >
+                <input type="email" class="form-control" name="email" placeholder="Email" >
+            </div>
+            <div class="mb-3" style = "width: 300px">
+              <input type="password" class="form-control" name="password1" placeholder="Password">
+            </div>
+            <div class="mb-3" style = "width: 300px">
+                <input type="password" class="form-control" name="password2" placeholder=" Confirm Password">
+            </div>
+    <button class="btn btn-secondary" style = "width: 300px" >Sign Up</button>
+        <a href="{% url 'login' %}" class="nav-link active">Already have an account?</a>
+
+
+</form>
+</div>
+{% endblock %}
