@@ -4,6 +4,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 
 from .serializers import TaskSerializer, UserSerializer, RegistrationSerializer
 from base.models import Task
@@ -197,12 +199,15 @@ class TaskList(generics.ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticated]
+
 
 
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticated]
 
 
 
@@ -211,6 +216,7 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner = self.request.user)
@@ -218,6 +224,7 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
 
 
 
@@ -230,6 +237,8 @@ def registration_view(request):
         data['response'] = 'successfully registered a new user'
         data['email'] = user.email
         data['username'] = user.username
+        token = Token.objects.get(user=user).key
+        data['token'] = token
     else:
         data = serializer.errors
     return Response(data)
